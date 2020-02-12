@@ -3,26 +3,26 @@
  */
 
 import { call, put, select, takeLatest, all } from 'redux-saga/effects';
-import ActionTypes from 'containers/App/constants';
+import ActionTypes from './constants';
+import { setArtists } from './actions';
 
 import request from 'utils/request';
-import { makeSelectUsername } from 'containers/HomePage/selectors';
 
-export function* getRepos() {
-  // Select username from store
-  const username = yield select(makeSelectUsername());
-  const requestURL = `https://api.github.com/users/${username}/repos?type=all&sort=updated`;
+export function* getArtistsData() {
+  const headers = {
+    method: 'GET',
+  };
 
-  // try {
-  //   // Call our request helper (see 'utils/request')
-  //   const repos = yield call(request, requestURL);
-  //   yield put(reposLoaded(repos, username));
-  // } catch (err) {
-  //   yield put(repoLoadingError(err));
-  // }
+  const requestURL = 'https://i8rmpiaad2.execute-api.us-east-1.amazonaws.com/dev/api/artists';
+
+  try {
+    const resp = yield call(request, requestURL, headers);
+    yield put(setArtists(resp));
+  } catch (err) {
+      console.error(err);
+  }
 }
 
-// Individual exports for testing
 export default function* coursesSaga() {
-  yield all([takeLatest(ActionTypes.LOAD_REPOS, getRepos)]);
+  yield all([takeLatest(ActionTypes.GET_ARTISTS, getArtistsData)]);
 }

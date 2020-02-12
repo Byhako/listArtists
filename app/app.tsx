@@ -41,7 +41,6 @@ const store = configureStore(initialState, history);
 const MOUNT_NODE = document.getElementById('app') as HTMLElement;
 
 const render = (Component = App) => {
-  console.log('cop', Component);
   ReactDOM.render(
     // tslint:disable-next-line:jsx-wrap-multiline
     <Provider store={store}>

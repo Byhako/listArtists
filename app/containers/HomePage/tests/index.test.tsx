@@ -10,7 +10,6 @@ import * as appActions from 'containers/App/actions';
 import configureStore from '../../../configureStore';
 import HomePage from '../index';
 import { initialState } from '../reducer';
-import { changeUsername } from '../actions';
 import history from '../../../utils/history';
 
 jest.mock('containers/App/actions');
@@ -48,7 +47,6 @@ describe('<HomePage />', () => {
 
   it('shouldn`t fetch repos on mount (if username is empty)', () => {
     renderHomePage(store);
-    expect(initialState.username).toBe('');
     expect(appActions.loadRepos).not.toHaveBeenCalled();
   });
 
@@ -63,8 +61,6 @@ describe('<HomePage />', () => {
 
   it('should fetch repos if the form is submitted when the username isn`t empty', () => {
     const { container } = renderHomePage(store);
-
-    store.dispatch(changeUsername('julienben'));
 
     const input = container.querySelector('input')!;
     fireEvent.change(input, { target: { value: 'julienben' } });

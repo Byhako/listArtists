@@ -6,8 +6,6 @@ import { ApplicationRootState } from '../../types';
 
 interface AppState {
   readonly loading: boolean;
-  readonly error?: object | boolean;
-  readonly currentUser: string;
 }
 
 /* --- ACTIONS --- */

@@ -10,9 +10,9 @@ const selectHome = (state: ApplicationRootState) => {
   return state.home || initialState;
 };
 
-const makeSelectUsername = () =>
+const makeSelectHome = () =>
   createSelector(selectHome, substate => {
-    return substate.username;
+    return substate;
   });
 
-export { selectHome, makeSelectUsername };
+export { selectHome, makeSelectHome };

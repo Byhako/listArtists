@@ -3,4 +3,5 @@ import { action } from 'typesafe-actions';
 
 import ActionTypes from './constants';
 
-export const changeUsername = (name: string) => action(ActionTypes.CHANGE_USERNAME, name);
+export const getArtists = () => action(ActionTypes.GET_ARTISTS);
+export const setArtists = (data: object[]) => action(ActionTypes.SET_ARTISTS, data);
