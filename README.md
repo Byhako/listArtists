@@ -6,16 +6,19 @@
 <br />
 
 <div align="center">
-  <P>Site create using</p>
+  <span>Site create using</span>
   <a href="https://github.com/react-boilerplate/react-boilerplate-typescript/">react boilerplate</a>
 
   <p>To run we execute:</P>
 
   <code>
     $ npm install
+  </code>
+  <code>
     $ npm start
   </code>
 
+  <br />
   <p>and open in a browser http://localhost:3000</P>
 
 
