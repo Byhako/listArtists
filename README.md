@@ -7,13 +7,15 @@
 
 <div align="center">
   <span>Site create using</span>
-  <a href="https://github.com/react-boilerplate/react-boilerplate-typescript/">react boilerplate</a>
-
+  <p>
+    <a href="https://github.com/react-boilerplate/react-boilerplate-typescript/">react boilerplate</a>
+  </p>
   <p>To run we execute:</P>
 
   <code>
     $ npm install
   </code>
+  <br />
   <code>
     $ npm start
   </code>
