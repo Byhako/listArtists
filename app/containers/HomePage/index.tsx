@@ -1,26 +1,24 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 
-import { useInjectReducer } from 'utils/injectReducer';
 import { useInjectSaga } from 'utils/injectSaga';
-import { makeSelectLoading } from 'containers/App/selectors';
 import { getArtists } from './actions';
 import { makeSelectHome } from './selectors';
-import reducer from './reducer';
+import { makeSelectApp } from '../App/selectors';
 import saga from './saga';
-import { ContentHome, FooterHome } from './styledComponents';
+import { ContentHome, WrappArtists, FooterHome, Artist, ContentArtist } from './styledComponents';
 
 const stateSelector = createStructuredSelector({
   dataHome: makeSelectHome(),
-  loading: makeSelectLoading(),
+  dataApp: makeSelectApp(),
 });
 
 export default function HomePage() {
-  useInjectReducer({ key: 'home', reducer: reducer });
   useInjectSaga({ key: 'home', saga: saga });
   const dispatch = useDispatch();
-  const { dataHome: { artists } } = useSelector(stateSelector);
+  const { dataHome: { artists }, dataApp: { widthWindow } } = useSelector(stateSelector);
+  const size = widthWindow/8;
 
   console.log(artists);
 
@@ -30,7 +28,15 @@ export default function HomePage() {
 
   return (
     <ContentHome>
+      <WrappArtists>
+        {artists.map((item: any) => (
+          <ContentArtist key={item.id} style={{height: size, width: size}}>
+            <Artist>
 
+            </Artist>
+          </ContentArtist>
+        ))}
+      </WrappArtists>
       <FooterHome />
     </ContentHome>
   );

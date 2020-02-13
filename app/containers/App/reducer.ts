@@ -4,6 +4,7 @@ import ActionTypes from './constants';
 // The initial state of the App
 export const initialState: ContainerState = {
   loading: false,
+  widthWindow: 0,
 };
 
 // Take this container's state (as a slice of root state), this container's actions and return new state
@@ -15,14 +16,13 @@ function appReducer(
     case ActionTypes.LOAD_REPOS:
       return {
         loading: true,
+        ...state
       };
-    // case ActionTypes.LOAD_REPOS_ERROR:
-    //   const { error, loading, ...rest } = state;
-    //   return {
-    //     error: action.payload,
-    //     loading: false,
-    //     ...rest,
-    //   };
+    case ActionTypes.RESIZE:
+      return {
+        loading: false,
+        widthWindow: action.payload,
+      };
     default:
       return state;
   }

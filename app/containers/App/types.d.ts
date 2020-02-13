@@ -6,6 +6,7 @@ import { ApplicationRootState } from '../../types';
 
 interface AppState {
   readonly loading: boolean;
+  readonly widthWindow: number;
 }
 
 /* --- ACTIONS --- */

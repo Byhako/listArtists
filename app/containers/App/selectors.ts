@@ -3,16 +3,19 @@
  */
 
 import { createSelector } from 'reselect';
+import { initialState } from './reducer';
 import { ApplicationRootState } from 'types';
 
 const selectGlobal = (state: ApplicationRootState) => {
-  return state.global;
+  return state.app || initialState;
 };
 
-const makeSelectLoading = () =>
-  createSelector(selectGlobal, globalState => globalState.loading);
+const makeSelectApp = () =>
+  createSelector(selectGlobal, substate => {
+    return substate;
+  });
 
 export {
   selectGlobal,
-  makeSelectLoading,
+  makeSelectApp,
 };
