@@ -1,8 +1,4 @@
-/**
- * Gets the repositories of the user from Github
- */
-
-import { call, put, select, takeLatest, all } from 'redux-saga/effects';
+import { call, put, takeLatest, all } from 'redux-saga/effects';
 import ActionTypes from './constants';
 import { setArtists } from './actions';
 

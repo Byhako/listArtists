@@ -1,5 +1,6 @@
 import styled from 'styles/styled-components';
 import { colors } from '../../global-styles';
+import { Link } from 'react-router-dom';
 
 export const NavBar = styled.div`
   display: flex;
@@ -12,8 +13,15 @@ export const NavBar = styled.div`
   width: 100%;
   height: 7%;
   padding: 0 22px;
-  p.text2 {
-    font-size: 0.8em;;
-    padding-right: 12px;
+`;
+
+export const ToHome = styled(Link)`
+  color: ${colors.palette.white};
+  text-decoration: none;
+  font-size: 0.8em;;
+  padding-right: 12px;
+  &:hover {
+    color: ${colors.palette.link};
+    font-weight: 600;
   }
 `;

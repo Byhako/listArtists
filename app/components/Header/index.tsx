@@ -1,12 +1,12 @@
 import * as React from 'react';
 
-import { NavBar } from './styledComponents';
+import { NavBar, ToHome } from './styledComponents';
 
 function Header() {
   return (
     <NavBar>
       <p>Prueba</p>
-      <p className="text2">LISTA DE ARTISTAS</p>
+      <ToHome to="/">LISTA DE ARTISTAS</ToHome>
     </NavBar>
   );
 }

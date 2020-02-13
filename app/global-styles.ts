@@ -7,7 +7,9 @@ export const colors = {
     black1: '#151515',
     black2: '#202020',
     black3: '#303030',
+    gray: '#626465',
     white: '#fff',
+    link: '#63b3f7',
   },
 };
 

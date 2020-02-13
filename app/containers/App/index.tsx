@@ -1,11 +1,11 @@
-import * as React from 'react';
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 
 import { Switch, Route } from 'react-router-dom';
 
 import HomePage from 'containers/HomePage/Loadable';
+import Albums from 'containers/Albums/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 import Header from 'components/Header';
 
@@ -31,10 +31,11 @@ export default function App() {
 
   return (
     <AppWrapper>
-      <GlobalContainer style={{ height: `${widthWindow*0.48}px`}}>
+      <GlobalContainer style={{ height: `${widthWindow * 0.48}px`}}>
         <Header />
         <Switch>
           <Route exact path="/" component={HomePage} />
+          <Route exact path="/artists/:id" component={Albums} />
           <Route path="" component={NotFoundPage} />
         </Switch>
       </GlobalContainer>

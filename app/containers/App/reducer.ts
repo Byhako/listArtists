@@ -16,7 +16,7 @@ function appReducer(
     case ActionTypes.LOAD_REPOS:
       return {
         loading: true,
-        ...state
+        ...state,
       };
     case ActionTypes.RESIZE:
       return {

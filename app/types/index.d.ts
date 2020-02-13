@@ -2,6 +2,7 @@ import { Reducer, Store } from 'redux';
 import { RouterState } from 'connected-react-router';
 import { ContainerState as AppState } from 'containers/App/types';
 import { ContainerState as HomeState } from 'containers/HomePage/types';
+import { ContainerState as AlbumsState } from 'containers/Albums/types';
 
 export interface InjectedStore extends Store {
   injectedReducers: any;
@@ -28,6 +29,7 @@ export interface ApplicationRootState {
   readonly router: RouterState;
   readonly app: AppState;
   readonly home: HomeState;
+  readonly albums: AlbumsState;
   // for testing purposes
   readonly test: any;
 }

@@ -6,9 +6,19 @@ import { applyMiddleware, createStore } from 'redux';
 import { routerMiddleware } from 'connected-react-router';
 import createSagaMiddleware from 'redux-saga';
 import createReducer from './reducers';
+import { persistStore, persistReducer } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
 import { InjectedStore, ApplicationRootState } from 'types';
 import { History } from 'history';
 import { composeWithDevTools } from 'redux-devtools-extension';
+
+const persistConfig = {
+  key: 'root',
+  storage,
+  whitelist: ['homePage', 'albums', 'app'],
+};
+
+const persistedReducer = persistReducer(persistConfig, createReducer());
 
 export default function configureStore(initialState: ApplicationRootState | {} = {}, history: History) {
   const reduxSagaMonitorOptions = {};
@@ -24,23 +34,13 @@ export default function configureStore(initialState: ApplicationRootState | {} =
     enhancer = composeWithDevTools(enhancer);
   }
 
-  // NOTE: Uncomment the code below to restore support for Redux Saga
-  // Dev Tools once it supports redux-saga version 1.x.x
-  // if (window.__SAGA_MONITOR_EXTENSION__)
-  //   reduxSagaMonitorOptions = {
-  //     sagaMonitor: window.__SAGA_MONITOR_EXTENSION__,
-  //   };
-
-
-  // Create the store with two middlewares
-  // 1. sagaMiddleware: Makes redux-sagas work
-  // 2. routerMiddleware: Syncs the location/URL path to the state
-
   const store = createStore(
-    createReducer(),
+    persistedReducer,
     initialState,
     enhancer,
   ) as InjectedStore;
+
+  const persistor = persistStore(store);
 
   // Extensions
   store.runSaga = sagaMiddleware.run;
@@ -55,6 +55,6 @@ export default function configureStore(initialState: ApplicationRootState | {} =
     });
   }
 
-  return store;
+  return { store, persistor };
 }
 

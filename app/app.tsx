@@ -1,10 +1,3 @@
-/**
- * app.js
- *
- * This is the entry file for the application, only setup and boilerplate
- * code.
- */
-
 import 'react-app-polyfill/ie11';
 import 'react-app-polyfill/stable';
 
@@ -16,6 +9,8 @@ import { ConnectedRouter } from 'connected-react-router';
 import FontFaceObserver from 'fontfaceobserver';
 import history from 'utils/history';
 import 'sanitize.css/sanitize.css';
+import { initializeIcons } from '@uifabric/icons';
+import { PersistGate } from 'redux-persist/integration/react';
 
 // Import root app
 import App from 'containers/App';
@@ -37,17 +32,21 @@ openSansObserver.load().then(() => {
 
 // Create redux store with history
 const initialState = {};
-const store = configureStore(initialState, history);
+const { store, persistor } = configureStore(initialState, history);
 const MOUNT_NODE = document.getElementById('app') as HTMLElement;
+initializeIcons();
 
 const render = (Component = App) => {
   ReactDOM.render(
-    // tslint:disable-next-line:jsx-wrap-multiline
-    <Provider store={store}>
-      <ConnectedRouter history={history}>
-        <Component />
-      </ConnectedRouter>
-    </Provider>,
+    (
+      <Provider store={store}>
+        <PersistGate loading={null} persistor={persistor}>
+          <ConnectedRouter history={history}>
+            <Component />
+          </ConnectedRouter>
+        </PersistGate>
+      </Provider>
+    ),
     MOUNT_NODE,
   );
 };

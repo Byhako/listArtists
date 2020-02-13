@@ -1,5 +1,6 @@
 import styled from 'styles/styled-components';
 import { colors } from '../../global-styles';
+import { Link } from 'react-router-dom';
 
 export const ContentHome = styled.div`
   display: flex;
@@ -48,6 +49,7 @@ export const Artist = styled.div`
 
 export const NameArtist = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
@@ -55,8 +57,28 @@ export const NameArtist = styled.div`
   height: 100%;
   border-radius: 50%;
   background-color: #0000008c;
-  color: ${colors.palette.white};
+  cursor: default;
   &:hover {
     background-color: #44411d52;
+  }
+`;
+
+export const GoArtist = styled(Link)`
+  color: ${colors.palette.white};
+  text-decoration: none;
+  &:hover {
+    color: ${colors.palette.link};
+    font-weight: 600;
+    background-color: #0000008c;
+  }
+`;
+
+export const Play = styled.img`
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  &:hover {
+    background-color: ${colors.palette.link};
+    cursor: pointer;
   }
 `;
