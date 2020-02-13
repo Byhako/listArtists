@@ -9,6 +9,7 @@ import history from 'utils/history';
 import appReducer from 'containers/App/reducer';
 import homeReducer from 'containers/HomePage/reducer';
 import albumsReducer from 'containers/Albums/reducer';
+import songsReducer from 'containers/Songs/reducer';
 
 
 /**
@@ -19,6 +20,7 @@ export default function createReducer(injectedReducers = {}) {
     app: appReducer,
     home: homeReducer,
     albums: albumsReducer,
+    songs: songsReducer,
     router: connectRouter(history),
     ...injectedReducers,
   });

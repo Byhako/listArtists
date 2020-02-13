@@ -3,6 +3,7 @@ import { RouterState } from 'connected-react-router';
 import { ContainerState as AppState } from 'containers/App/types';
 import { ContainerState as HomeState } from 'containers/HomePage/types';
 import { ContainerState as AlbumsState } from 'containers/Albums/types';
+import { ContainerState as SongsState } from 'containers/Songs/types';
 
 export interface InjectedStore extends Store {
   injectedReducers: any;
@@ -30,6 +31,7 @@ export interface ApplicationRootState {
   readonly app: AppState;
   readonly home: HomeState;
   readonly albums: AlbumsState;
+  readonly songs: SongsState;
   // for testing purposes
   readonly test: any;
 }

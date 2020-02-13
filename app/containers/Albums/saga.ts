@@ -1,4 +1,4 @@
-import { call, put, select, takeLatest, all } from 'redux-saga/effects';
+import { call, put, takeLatest, all } from 'redux-saga/effects';
 import ActionTypes from './constants';
 import { setAlbums } from './actions';
 

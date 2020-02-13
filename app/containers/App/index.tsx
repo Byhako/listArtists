@@ -6,6 +6,7 @@ import { Switch, Route } from 'react-router-dom';
 
 import HomePage from 'containers/HomePage/Loadable';
 import Albums from 'containers/Albums/Loadable';
+import Songs from 'containers/Songs/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 import Header from 'components/Header';
 
@@ -36,6 +37,7 @@ export default function App() {
         <Switch>
           <Route exact path="/" component={HomePage} />
           <Route exact path="/artists/:id" component={Albums} />
+          <Route exact path="/album/:id" component={Songs} />
           <Route path="" component={NotFoundPage} />
         </Switch>
       </GlobalContainer>

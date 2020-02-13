@@ -17,6 +17,7 @@ import { makeSelectHome } from '../HomePage/selectors';
 import play from '../../images/play-icon2.png';
 
 import { getAlbums, setAlbums } from './actions';
+import { setAlbum } from '../Songs/actions';
 import saga from './saga';
 
 import {
@@ -38,7 +39,6 @@ import {
   Tracks,
   Play,
 } from './styledComponents';
-import { any } from 'expect';
 
 const stateSelector = createStructuredSelector({
   dataAlbums: makeSelectAlbums(),
@@ -59,9 +59,10 @@ function Albums(props: Props) {
   } = useSelector(stateSelector);
   const dispatch = useDispatch();
   const data: any = {...artistSelected};
+  const artisId: number = props.match.params.id;
 
   useEffect((): any => {
-    dispatch(getAlbums(props.match.params.id));
+    dispatch(getAlbums(artisId));
     return () => dispatch(setAlbums([]));
   }, []);
 
@@ -87,7 +88,7 @@ function Albums(props: Props) {
           <Wrapper>
             <Title>Albunes</Title>
             {albums.map((item: any) => (
-              <Album key={item.id}>
+              <Album key={item.id} onClick={() => dispatch(setAlbum({...item, artisId }))}>
                 <Link to={`/album/${item.id}`}>
                   <Img src={item.image} />
                 </Link>
