@@ -41,4 +41,22 @@ export const Artist = styled.div`
   height: 90%;
   border-radius: 50%;
   background-color: ${colors.palette.white};
+  background-size: cover;
+  background-repeat: no-repeat;
+  cursor: pointer;
+`;
+
+export const NameArtist = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background-color: #0000008c;
+  color: ${colors.palette.white};
+  &:hover {
+    background-color: #44411d52;
+  }
 `;
