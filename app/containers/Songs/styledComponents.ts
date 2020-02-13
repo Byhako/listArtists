@@ -71,7 +71,7 @@ export const ListSongs = styled.div`
   height: 60%;
 `;
 
-export const Play = styled.img`
+export const Botton = styled.img`
   width: 30px;
   height: 30px;
   border-radius: 50%;

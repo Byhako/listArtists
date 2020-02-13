@@ -1,14 +1,15 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { Spinner, SpinnerSize } from 'office-ui-fabric-react/lib/Spinner';
-import { Link } from 'react-router-dom';
 
 import { useInjectSaga } from 'utils/injectSaga';
 import makeSelectSongs from './selectors';
 import { getSongs, setSongs } from './actions';
 import { makeSelectApp } from '../App/selectors';
 import play from '../../images/play-icon2.png';
+import pause from '../../images/pause-icon.png';
+import noPreview from '../../images/noPreview.jpg';
 
 import saga from './saga';
 
@@ -26,7 +27,7 @@ import {
   Song,
   Text,
   NameSong,
-  Play,
+  Botton,
   NotFound,
 } from './styledComponents';
 
@@ -46,10 +47,27 @@ function Songs(props: Props) {
   const dataSongs: any = [...listSongs];
   const data: any = {...album};
 
+  const [audioId, setAudioId] = useState(-99);
+
   useEffect((): any => {
     dispatch(getSongs(props.match.params.id));
     return () => dispatch(setSongs([]));
   }, []);
+
+  const handleAudio = (action: string, id: number) => {
+    const elementClick = document.getElementById(id.toString());
+    const elementOld = document.getElementById(audioId.toString());
+
+    if (action === 'play') {
+      if (elementOld) elementOld.pause();
+      if (elementClick) elementClick.play();
+      setAudioId(id);
+    } else {
+      if (elementClick) elementClick.pause();
+      setAudioId(-99);
+    }
+  };
+
   console.log(dataSongs);
   return (
     <ContentSongs>
@@ -83,9 +101,18 @@ function Songs(props: Props) {
                         {item.name}
                       </NameSong>
                     </Text>
-                    <a href={item.spotify_url} target="_blank">
-                      <Play src={play} />
-                    </a>
+                    {item.preview_url ? (
+                      <React.Fragment>
+                        <audio id={item.id} src={item.preview_url} />
+                        {audioId === item.id ? (
+                          <Botton src={pause} onClick={() => handleAudio('pause', item.id)} />
+                        ) : (
+                          <Botton src={play} onClick={() => handleAudio('play', item.id)} />
+                        )}
+                      </React.Fragment>
+                    ) : (
+                      <Botton src={noPreview}/>
+                    )}
                   </Song>
                 ))}
               </Wrapper>
