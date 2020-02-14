@@ -63,8 +63,8 @@ function Songs(props: Props) {
   }, [dataSongs]);
 
   const handleAudio = (action: string, id: number) => {
-    const elementClick = document.getElementById(id.toString());
-    const elementOld = document.getElementById(audioId.toString());
+    const elementClick = document.getElementById(id.toString()) as HTMLAudioElement;
+    const elementOld = document.getElementById(audioId.toString()) as HTMLAudioElement;
 
     if (action === 'play') {
       if (elementOld) elementOld.pause();

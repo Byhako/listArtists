@@ -24,7 +24,7 @@ const renderHomePage = store =>
 
 describe('<HomePage />', () => {
   let store;
-  const mockedLoadRepos = appActions.loadRepos as jest.Mock;
+  const mockedLoadRepos = appActions.load as jest.Mock;
 
   beforeAll(() => {
     // loadRepos is mocked so that we can spy on it but also so that it doesn't trigger a network request
@@ -47,7 +47,7 @@ describe('<HomePage />', () => {
 
   it('shouldn`t fetch repos on mount (if username is empty)', () => {
     renderHomePage(store);
-    expect(appActions.loadRepos).not.toHaveBeenCalled();
+    expect(appActions.load).not.toHaveBeenCalled();
   });
 
   it('shouldn`t fetch repos if the form is submitted when the username is empty', () => {
@@ -56,7 +56,7 @@ describe('<HomePage />', () => {
     const form = container.querySelector('form')!;
     fireEvent.submit(form);
 
-    expect(appActions.loadRepos).not.toHaveBeenCalled();
+    expect(appActions.load).not.toHaveBeenCalled();
   });
 
   it('should fetch repos if the form is submitted when the username isn`t empty', () => {
@@ -64,10 +64,10 @@ describe('<HomePage />', () => {
 
     const input = container.querySelector('input')!;
     fireEvent.change(input, { target: { value: 'julienben' } });
-    expect(appActions.loadRepos).not.toHaveBeenCalled();
+    expect(appActions.load).not.toHaveBeenCalled();
 
     const form = container.querySelector('form')!;
     fireEvent.submit(form);
-    expect(appActions.loadRepos).toHaveBeenCalled();
+    expect(appActions.load).toHaveBeenCalled();
   });
 });
