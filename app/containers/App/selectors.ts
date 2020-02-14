@@ -7,7 +7,7 @@ import { initialState } from './reducer';
 import { ApplicationRootState } from 'types';
 
 const selectGlobal = (state: ApplicationRootState) => {
-  return state.app || initialState;
+  return state.global || initialState;
 };
 
 const makeSelectApp = () =>

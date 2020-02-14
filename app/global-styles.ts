@@ -24,16 +24,22 @@ const GlobalStyle = createGlobalStyle`
   }
 
   body {
-    font-family: 'sans-serif', Helvetica, Arial, sans-serif;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   }
 
   body.fontLoaded {
-    font-family: 'sans-serifs', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  }
+
+  #app {
+    background-color: #fafafa;
+    min-height: 100%;
+    min-width: 100%;
   }
 
   p,
   label {
-    font-family: sans-serif, Georgia, Times, 'Times New Roman';
+    font-family: Georgia, Times, 'Times New Roman', serif;
     line-height: 1.5em;
   }
 `;

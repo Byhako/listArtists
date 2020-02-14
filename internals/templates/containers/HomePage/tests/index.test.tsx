@@ -4,6 +4,7 @@
 
 import React from 'react';
 import { render } from '@testing-library/react';
+import { IntlProvider } from 'react-intl';
 
 import HomePage from '../index';
 
@@ -12,7 +13,10 @@ describe('<HomePage />', () => {
     const {
       container: { firstChild },
     } = render(
-      <HomePage />,
+      // tslint:disable-next-line: jsx-wrap-multiline
+      <IntlProvider locale="en">
+        <HomePage />
+      </IntlProvider>,
     );
     expect(firstChild).toMatchSnapshot();
   });

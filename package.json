@@ -1,20 +1,19 @@
 {
-  "name": "artists-list",
+  "name": "react-boilerplate",
   "version": "4.0.0",
-  "description": "artist list with albuns and songs",
-  "homepage":"https://Byhako.github.io/listArtists",
+  "description": "A highly scalable, offline-first foundation with the best DX and a focus on performance and best practices",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Byhako/listArtists.git"
+    "url": "git://github.com/react-boilerplate/react-boilerplate.git"
   },
   "engines": {
     "npm": ">=5",
     "node": ">=8.15.1"
   },
-  "author": "Ruben E Acosta",
+  "author": "Max Stoiber",
   "license": "MIT",
   "scripts": {
-    "deploy":"gh-pages -d build",
+    "deploy": "gh-pages -d build",
     "analyze:clean": "rimraf stats.json",
     "preanalyze": "npm run analyze:clean",
     "analyze": "node ./internals/scripts/analyze.js",
@@ -86,7 +85,7 @@
     "ip": "1.1.5",
     "lodash": "4.17.14",
     "minimist": "1.2.0",
-    "office-ui-fabric-react": "^7.49.0",
+    "office-ui-fabric-react": "^7.93.0",
     "react": "16.8.6",
     "react-dom": "16.8.6",
     "react-helmet": "6.0.0-beta",
@@ -94,7 +93,6 @@
     "react-redux": "7.1.0",
     "react-router-dom": "5.0.1",
     "redux": "4.0.4",
-    "redux-persist": "^6.0.0",
     "redux-saga": "1.0.5",
     "reselect": "4.0.0",
     "sanitize.css": "10.0.0",
@@ -148,6 +146,7 @@
     "babel-loader": "8.0.6",
     "babel-plugin-dynamic-import-node": "2.3.0",
     "babel-plugin-lodash": "3.3.4",
+    "babel-plugin-react-intl": "4.0.1",
     "babel-plugin-styled-components": "1.10.6",
     "babel-plugin-transform-react-remove-prop-types": "0.4.24",
     "circular-dependency-plugin": "5.0.2",

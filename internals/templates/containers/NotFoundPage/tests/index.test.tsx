@@ -4,6 +4,7 @@
 
 import React from 'react';
 import { render } from '@testing-library/react';
+import { IntlProvider } from 'react-intl';
 import NotFound from '..';
 
 describe('<NotFound />', () => {
@@ -11,7 +12,10 @@ describe('<NotFound />', () => {
     const {
       container: { firstChild },
     } = render(
-      <NotFound />,
+      // tslint:disable-next-line: jsx-wrap-multiline
+      <IntlProvider locale="en">
+        <NotFound />
+      </IntlProvider>,
     );
     expect(firstChild).toMatchSnapshot();
   });

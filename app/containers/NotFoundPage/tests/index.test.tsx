@@ -4,15 +4,19 @@
 
 import React from 'react';
 import { render } from '@testing-library/react';
+import { IntlProvider } from 'react-intl';
 
 import NotFound from '../index';
+import messages from '../messages';
 
 describe('<NotFound />', () => {
   it('should render the Page Not Found text', () => {
     const { queryByText } = render(
       // tslint:disable-next-line: jsx-wrap-multiline
-      <NotFound />,
+      <IntlProvider locale="en">
+        <NotFound />
+      </IntlProvider>,
     );
-    expect(queryByText('Erro in NotFound')).toBeInTheDocument();
+    expect(queryByText(messages.header.defaultMessage)).toBeInTheDocument();
   });
 });

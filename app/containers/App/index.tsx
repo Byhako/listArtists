@@ -30,7 +30,7 @@ export default function App() {
   }, []);
 
   window.onresize = () => dispatch(resize(window.innerWidth));
-
+console.log('widthWindow', widthWindow)
   return (
     <AppWrapper>
       <GlobalContainer style={{ height: `${widthWindow * 0.48}px`}}>
