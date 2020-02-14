@@ -1,5 +1,5 @@
 enum ActionTypes {
-  LOAD_REPOS = 'artists-liste/App/LOAD_REPOS',
+  LOAD = 'artists-liste/App/LOAD',
   RESIZE = 'artists-liste/App/RESIZE',
 }
 

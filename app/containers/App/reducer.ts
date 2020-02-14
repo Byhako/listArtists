@@ -13,10 +13,10 @@ function appReducer(
   action: ContainerActions,
 ): ContainerState {
   switch (action.type) {
-    case ActionTypes.LOAD_REPOS:
+    case ActionTypes.LOAD:
       return {
-        loading: true,
-        ...state,
+        loading: action.payload,
+        widthWindow: state.widthWindow,
       };
     case ActionTypes.RESIZE:
       return {

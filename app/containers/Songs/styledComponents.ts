@@ -42,13 +42,11 @@ export const Column = styled.div`
 `;
 
 export const GoBack = styled(Link)`
-  margin: 10px 0 0;
+  margin: 0 100px 0 0;
   color: ${colors.palette.white};
   font-size: 1em;
   cursor: pointer;
   text-decoration: none;
-  position: absolute;
-  bottom: 84px;
   &:hover {
     color: ${colors.palette.link};
   }
@@ -92,6 +90,8 @@ export const Title = styled.p`
   margin: 10px 0;
   color: ${colors.palette.white};
   font-size: 1.4em;
+  justify-content: space-between;
+  display: flex;
 `;
 
 export const Song = styled.div`
@@ -120,7 +120,7 @@ export const NameSong = styled.a`
 `;
 
 export const Tracks = styled.p`
-  margin: 0 0 10px;
+  margin: 0;
   color: ${colors.palette.white};
   font-size: 0.9em;
   span {

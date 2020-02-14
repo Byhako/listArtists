@@ -15,7 +15,8 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 const persistConfig = {
   key: 'root',
   storage,
-  whitelist: ['homePage', 'albums', 'app'],
+  blacklist: []
+  // whitelist: ['homePage', 'albums', 'app'],
 };
 
 const persistedReducer = persistReducer(persistConfig, createReducer());

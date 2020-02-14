@@ -18,6 +18,8 @@ import play from '../../images/play-icon2.png';
 
 import { getAlbums, setAlbums } from './actions';
 import { setAlbum } from '../Songs/actions';
+import { load } from '../App/actions';
+
 import saga from './saga';
 
 import {
@@ -62,9 +64,16 @@ function Albums(props: Props) {
   const artisId: number = props.match.params.id;
 
   useEffect((): any => {
+    dispatch(load(true));
     dispatch(getAlbums(artisId));
     return () => dispatch(setAlbums([]));
   }, []);
+
+  useEffect(() => {
+    if (albums.length) {
+      dispatch(load(false));
+    }
+  }, [albums]);
 
   return (
     <ContentAlbums>
@@ -84,29 +93,25 @@ function Albums(props: Props) {
       </HeaderAlbum>
 
       <ListAlbums>
-        {albums.length ? (
-          <Wrapper>
-            <Title>Albunes</Title>
-            {albums.map((item: any) => (
-              <Album key={item.id} onClick={() => dispatch(setAlbum({...item, artisId }))}>
-                <Link to={`/album/${item.id}`}>
-                  <Img src={item.image} />
-                </Link>
-                <Line>
-                  <Text>
-                    <NameAlbum to={`/album/${item.id}`}>{item.name}</NameAlbum>
-                    <Tracks>Canciones: <span>{item.total_tracks}</span></Tracks>
-                  </Text>
-                  <a href={item.spotify_url} target="_blank">
-                    <Play src={play} />
-                  </a>
-                </Line>
-              </Album>
-            ))}
-          </Wrapper>
-        ) : (
-          <Spinner size={SpinnerSize.large} />
-        )}
+        <Wrapper>
+          <Title>Albunes</Title>
+          {albums.map((item: any) => (
+            <Album key={item.id} onClick={() => dispatch(setAlbum({...item, artisId }))}>
+              <Link to={`/album/${item.id}`}>
+                <Img src={item.image} />
+              </Link>
+              <Line>
+                <Text>
+                  <NameAlbum to={`/album/${item.id}`}>{item.name}</NameAlbum>
+                  <Tracks>Canciones: <span>{item.total_tracks}</span></Tracks>
+                </Text>
+                <a href={item.spotify_url} target="_blank">
+                  <Play src={play} />
+                </a>
+              </Line>
+            </Album>
+          ))}
+        </Wrapper>
       </ListAlbums>
     </ContentAlbums>
   );

@@ -4,6 +4,7 @@ import { createStructuredSelector } from 'reselect';
 
 import { Switch, Route } from 'react-router-dom';
 
+import Loader from 'components/LoadingIndicator/Loadable';
 import HomePage from 'containers/HomePage/Loadable';
 import Albums from 'containers/Albums/Loadable';
 import Songs from 'containers/Songs/Loadable';
@@ -41,6 +42,7 @@ export default function App() {
           <Route path="" component={NotFoundPage} />
         </Switch>
       </GlobalContainer>
+      <Loader />
       <GlobalStyle />
     </AppWrapper>
   );

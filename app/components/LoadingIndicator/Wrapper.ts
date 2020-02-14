@@ -2,9 +2,10 @@ import styled from 'styles/styled-components';
 
 const Wrapper = styled.div`
   margin: 2em auto;
-  width: 40px;
-  height: 40px;
-  position: relative;
+  position: absolute;
+  right: 50%;
+  width: 100px;
+  height: 100px;
 `;
 
 export default Wrapper;

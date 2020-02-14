@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import { Spinner, SpinnerSize } from 'office-ui-fabric-react/lib/Spinner';
 
 import { useInjectSaga } from 'utils/injectSaga';
 import makeSelectSongs from './selectors';
 import { getSongs, setSongs } from './actions';
+import { load } from '../App/actions';
+
 import { makeSelectApp } from '../App/selectors';
 import play from '../../images/play-icon2.png';
 import pause from '../../images/pause-icon.png';
@@ -50,9 +51,16 @@ function Songs(props: Props) {
   const [audioId, setAudioId] = useState(-99);
 
   useEffect((): any => {
+    dispatch(load(true));
     dispatch(getSongs(props.match.params.id));
     return () => dispatch(setSongs([]));
   }, []);
+
+  useEffect(() => {
+    if (dataSongs.length) {
+      dispatch(load(false));
+    }
+  }, [dataSongs]);
 
   const handleAudio = (action: string, id: number) => {
     const elementClick = document.getElementById(id.toString());
@@ -68,7 +76,6 @@ function Songs(props: Props) {
     }
   };
 
-  console.log(dataSongs);
   return (
     <ContentSongs>
       <HeaderSong>
@@ -79,7 +86,6 @@ function Songs(props: Props) {
             width: `${widthWindow * 0.1}px`,
           }}
         />
-        <GoBack to={`/artists/${data.artisId}`}>Albunes</GoBack>
         <Column>
           <Name>{data.name}</Name>
           <Tracks>Canciones: <span>{data.total_tracks}</span></Tracks>
@@ -87,39 +93,36 @@ function Songs(props: Props) {
       </HeaderSong>
 
       <ListSongs>
-        {dataSongs.length ? (
-          <div style={{ width: '100%' }}>
-            {dataSongs[0].no_songs === 'no_songs' ? (
-              <NotFound>No pudimos encontrar canciones.</NotFound>
-            ) : (
-              <Wrapper>
-                <Title>Canciones</Title>
-                {dataSongs.map((item: any) => (
-                  <Song key={item.id}>
-                    <Text>
-                      <NameSong href={item.spotify_url} target="_blank">
-                        {item.name}
-                      </NameSong>
-                    </Text>
-                    {item.preview_url ? (
-                      <React.Fragment>
-                        <audio id={item.id} src={item.preview_url} />
-                        {audioId === item.id ? (
-                          <Botton src={pause} onClick={() => handleAudio('pause', item.id)} />
-                        ) : (
-                          <Botton src={play} onClick={() => handleAudio('play', item.id)} />
-                        )}
-                      </React.Fragment>
-                    ) : (
-                      <Botton src={noPreview}/>
-                    )}
-                  </Song>
-                ))}
-              </Wrapper>
-            )}
-          </div>
+        {dataSongs.length && dataSongs[0].no_songs === 'no_songs' ? (
+          <NotFound>No pudimos encontrar canciones.</NotFound>
         ) : (
-          <Spinner size={SpinnerSize.large} />
+          <Wrapper>
+            <Title>
+              Canciones
+              <GoBack to={`/artists/${data.artisId}`}>Lista de albunes</GoBack>
+            </Title>
+            {dataSongs.map((item: any) => (
+              <Song key={item.id}>
+                <Text>
+                  <NameSong href={item.spotify_url} target="_blank">
+                    {item.name}
+                  </NameSong>
+                </Text>
+                {item.preview_url ? (
+                  <React.Fragment>
+                    <audio id={item.id} src={item.preview_url} />
+                    {audioId === item.id ? (
+                      <Botton src={pause} onClick={() => handleAudio('pause', item.id)} />
+                    ) : (
+                      <Botton src={play} onClick={() => handleAudio('play', item.id)} />
+                    )}
+                  </React.Fragment>
+                ) : (
+                  <Botton src={noPreview}/>
+                )}
+              </Song>
+            ))}
+          </Wrapper>
         )}
       </ListSongs>
     </ContentSongs>
