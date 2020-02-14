@@ -45,7 +45,9 @@
     "test": "cross-env NODE_ENV=test jest --coverage",
     "test:watch": "cross-env NODE_ENV=test jest --watchAll",
     "coveralls": "cat ./coverage/lcov.info | coveralls",
-    "prettify": "prettier --write"
+    "prettify": "prettier --write",
+    "now-start": "serve -s ./build",
+    "now-build": "cross-env NODE_ENV=production webpack --config internals/webpack/webpack.prod.babel.js --color -p --progress --hide-modules --display-optimization-bailout"
   },
   "eslintIgnore": [
     "**/*.ts",
@@ -96,6 +98,7 @@
     "redux-saga": "1.0.5",
     "reselect": "4.0.0",
     "sanitize.css": "10.0.0",
+    "serve": "^11.3.0",
     "styled-components": "4.3.2",
     "typesafe-actions": "4.4.0"
   },
