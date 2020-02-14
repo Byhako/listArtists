@@ -32,7 +32,7 @@ const LoadingIndicator = () => {
         </Wrapper>
       )}
     </React.Fragment>
-  )
+  );
 };
 
 export default LoadingIndicator;

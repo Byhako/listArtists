@@ -67,11 +67,11 @@ function Songs(props: Props) {
     const elementOld = document.getElementById(audioId.toString()) as HTMLAudioElement;
 
     if (action === 'play') {
-      if (elementOld) elementOld.pause();
-      if (elementClick) elementClick.play();
+      if (elementOld) { elementOld.pause(); }
+      if (elementClick) { elementClick.play(); }
       setAudioId(id);
     } else {
-      if (elementClick) elementClick.pause();
+      if (elementClick) { elementClick.pause(); }
       setAudioId(-99);
     }
   };
