@@ -85,7 +85,7 @@
     "intl": "1.2.5",
     "invariant": "2.2.4",
     "ip": "1.1.5",
-    "lodash": "4.17.14",
+    "lodash": "4.17.19",
     "minimist": "1.2.2",
     "office-ui-fabric-react": "^7.93.0",
     "react": "16.8.6",
