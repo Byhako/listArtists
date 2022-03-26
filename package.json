@@ -86,7 +86,7 @@
     "invariant": "2.2.4",
     "ip": "1.1.5",
     "lodash": "4.17.14",
-    "minimist": "1.2.2",
+    "minimist": "1.2.6",
     "office-ui-fabric-react": "^7.93.0",
     "react": "16.8.6",
     "react-dom": "16.8.6",
